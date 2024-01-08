@@ -1,0 +1,52 @@
+<!-- 客户端 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket聊天室</title>
+</head>
+<body>
+    <h1>WebSocket聊天室</h1>
+    <div id="chat">
+        <input id="input" type="text" placeholder="输入消息">
+        <button id="send" onclick="send()">发送</button>
+        <ul id="messages"></ul>
+    </div>
+    <script>
+        // 创建一个WebSocket对象，连接到服务器
+        var ws = new WebSocket("ws://192.168.2.2:8305");
+
+        // 当WebSocket连接建立时，显示连接成功的消息
+        ws.onopen = function() {
+            var li = document.createElement("li");
+            li.textContent = "连接成功";
+            document.getElementById("messages").appendChild(li);
+        };
+
+        // 当WebSocket接收到服务器发送的消息时，显示消息内容
+        ws.onmessage = function(event) {
+            var li = document.createElement("li");
+            li.textContent = event.data;
+            document.getElementById("messages").appendChild(li);
+        };
+
+        // 当WebSocket连接关闭时，显示连接断开的消息
+        ws.onclose = function() {
+            var li = document.createElement("li");
+            li.textContent = "连接断开";
+            document.getElementById("messages").appendChild(li);
+        };
+
+        // 定义一个函数，用于发送用户输入的消息到服务器
+        function send() {
+            var input = document.getElementById("input");
+            var message = input.value;
+            // 如果消息不为空，发送消息并清空输入框
+            if (message) {
+                ws.send(message);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

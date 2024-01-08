@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+*,p,h1,h2,h3,h4,h5,h6{padding: 0;margin: 0;border: none;}
+h1,h2,h3,h4,h5,h6{font-size: 24px;}
+body{font-size: 23px;font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu}
+ul li{padding:0;margin:0;list-style:none}
+a,a:hover,a:focus{text-decoration: none;}
+/*a:hover{color: white;transition: 0.2s;}*/
+
+/* 清除浮动 */
+.my_clear:after{
+    content: '';
+    display: block;
+    clear: both;
+    width: 0;
+    height: 0;
+}
+/* 省略号父级元素  */
+.text_omission_father{
+    display: flex;
+}
+/* 省略号子级元素  */
+.text_omission_son{
+    flex: 1;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/*显示三行省略*/
+.text_omission_son_ellipsis_3{
+	 overflow: hidden;
+	 text-overflow: ellipsis;
+	 display: -webkit-box;
+	 -webkit-line-clamp: 3;
+	 -webkit-box-orient: vertical;
+}
+
+/* flex 居中 */
+.flex_center {
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content: center;
+}
+
+/* 滚动条样式 */
+.scroll_y::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.scroll_y::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+.scroll_y::-webkit-scrollbar-thumb {
+    background-color: #0ae;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%,
+    color-stop(.5, rgba(255, 255, 255, .2)),
+    color-stop(.5, transparent), to(transparent));
+}
+/*
+    说明像素字体样式
+*/
+@font-face {
+  font-family: XiangshuFont;
+  /*src: url("../../font/SHPinscher-Regular.otf");*/
+  /*src: url("../../font/PublicPixel.ttf");*/
+  src: url("../../font/Pixolletta8px.ttf");
+}

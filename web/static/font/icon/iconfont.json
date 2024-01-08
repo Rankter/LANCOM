@@ -1,0 +1,44 @@
+{
+  "id": "4366850",
+  "name": "myicon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "WebChat",
+  "glyphs": [
+    {
+      "icon_id": "5387862",
+      "name": "关闭_o",
+      "font_class": "guanbi_o",
+      "unicode": "eb76",
+      "unicode_decimal": 60278
+    },
+    {
+      "icon_id": "13603528",
+      "name": "下拉",
+      "font_class": "shangla",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "2085033",
+      "name": "发送",
+      "font_class": "fasong",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "2815727",
+      "name": "素材",
+      "font_class": "sucai",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "12178761",
+      "name": "发送",
+      "font_class": "fasong1",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}
