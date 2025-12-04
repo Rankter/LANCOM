@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #FFF5E1; /* 暖色调背景 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #5C3D2E; /* 暖色调文字 */
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .alert {
+            background: white;
+            {#border-radius: 16px;#}
+            padding: 40px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            /* 高度自适应 */
+            height: auto;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(230, 126, 34, 0.2);
+        }
+
+        .alert-content {
+            text-align: center;
+        }
+
+        .error-code {
+            font-size: 2.5rem;
+            font-weight: 700;
+            {#color: #E67E22;#}
+            color: #E67E22;
+            margin-bottom: 15px;
+        }
+
+        .alert-message {
+            font-size: 1.3rem;
+            color: #5C3D2E;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .alert {
+                padding: 30px 20px;
+            }
+
+            .alert-message {
+                font-size: 1.1rem;
+            }
+
+            .error-code {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="alert">
+            <div class="alert-content">
+                <div class="error-code">页面未找到</div>
+                <div class="alert-message">抱歉，您访问的页面不存在</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

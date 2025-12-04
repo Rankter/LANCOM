@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>媒体播放器</title>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 120px;
+            border: 1px solid #333;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .menu {
+            position: absolute;
+            list-style: none;
+            padding: 5px 10px;
+            background: #fff;
+            border: 1px solid #999;
+            display: none;
+        }
+        .menu li {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .menu li:hover {
+            background: #eee;
+        }
+        .context-menu {
+          position: absolute;
+          display: none;
+          background: #fff;
+          border: 1px solid #ccc;
+          list-style: none;
+          padding: 0;
+        }
+        .context-menu li {
+          padding: 6px 12px;
+          cursor: pointer;
+        }
+        .context-menu li:hover {
+          background: #eee;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box" data-menu="menu1">Box 1 内容</div>
+    <div class="box" data-menu="menu2">Box 2 内容</div>
+    <div class="box" data-menu="menu3">Box 3 内容</div>
+
+    <!-- 自定义菜单 -->
+    <ul id="menu1" class="context-menu">
+      <li>动作 A</li>
+      <li>动作 B</li>
+    </ul>
+
+    <ul id="menu2" class="context-menu">
+      <li>编辑</li>
+      <li>删除</li>
+    </ul>
+
+    <ul id="menu3" class="context-menu">
+      <li>复制</li>
+      <li>分享</li>
+    </ul>
+
+   <script>
+        $(document).ready(function () {
+        // 右键点击 box 时
+        $(document).on("contextmenu", ".box", function (e) {
+            e.preventDefault(); // 阻止系统右键菜单
+
+            // 关闭所有菜单
+            $(".context-menu").hide();
+
+            // 获取当前 box 应显示的菜单
+            const menuId = $(this).data("menu");
+            const menu = $("#" + menuId);
+
+            // 设置菜单位置并显示
+            menu.css({
+                top: e.pageY + "px",
+                left: e.pageX + "px",
+                display: "block"
+            });
+        });
+
+        // 点击页面其它地方 → 隐藏自定义菜单，但保留系统菜单
+        $(document).on("click", function () {
+            $(".context-menu").hide();
+        });
+
+        // 对非 box 元素，保持系统默认菜单
+        $(document).on("contextmenu", function (e) {
+            if (!$(e.target).closest(".box").length) {
+                $(".context-menu").hide();
+                return true; // 不阻止默认右键菜单
+            }
+        });
+
+    });
+
+   </script>
+</body>
+</html>

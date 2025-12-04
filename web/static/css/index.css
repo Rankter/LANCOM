@@ -1,0 +1,246 @@
+
+body,html{
+    height: 100%;
+}
+#link_status{
+    display: inline-block;
+    border: 8px solid red;
+    width: 0;
+    height: 0;
+}
+#link_status.on{
+    border: 8px solid #43f143;
+}
+#top{
+    height: 10%;
+    width: 100%;
+    text-align: center;
+}
+#top h1{
+    line-height: 60px;
+}
+#top .shell{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #953de5;
+}
+#show_chat_model{
+    height: 80%;
+    font-size: 17px;
+}
+/*#show_chat_model .main_UL{*/
+/*    min-height: 1800px;*/
+/*}*/
+#send_msg_model{
+    height: 10%;
+    width: 100%;
+}
+#send_msg_model .shell.on{
+    display: none;
+}
+#send_msg_model .shell{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    background-color: #cccccc;
+    /*padding: 15px 5px;*/
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content: center;
+}
+/*#send_msg_model .shell .icon-guanbi_o{*/
+/*    position: absolute;*/
+/*    top: -20px;*/
+/*    left: calc(50% - 20px);*/
+/*    font-size: 17px;*/
+/*    font-weight: bold;*/
+/*    color: white;*/
+/*    background-color: #00aaee;*/
+/*    padding: 0 10px 0 10px;*/
+/*    border-radius: 30px 30px 0 0;*/
+/*}*/
+#send_msg_model .shell .input{
+    float: left;
+    /*width: 80%;*/
+    margin-top: 15px;
+}
+#send_msg_model .shell .sct{
+    float: left;
+    /*width: 20%;*/
+    /*padding: 10px 0;*/
+    margin-left: 10px;
+    margin-top: 15px;
+}
+#send_msg_model .shell .sct .iconfont{
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+#send_msg_model .shell .sct .icon-fasong{
+    font-size: 23px;
+    color: #108cf6;
+}
+#send_msg_model .shell .sct .icon-sucai{
+    font-size: 23px;
+    color: deeppink;
+}
+#send_msg_model .shell .sct .icon-sucai:active{
+    color: white;
+}
+#send_msg_model .shell .sct .icon-fasong:active{
+    color: #e03434;
+}
+#msg_text{
+    /*background-color: #cccccc;*/
+    font-size: 20px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    resize: none;
+}
+.me{
+    /*float: right;*/
+
+}
+.me .msg_title{
+    float: right;
+}
+.she .msg_title{
+    float: left;
+    display: flex;
+}
+.she .msg_title.on{
+    flex-direction: row-reverse;
+}
+.she .msg_title img{
+    border-radius: 8px;
+}
+.she .c_time, .me .c_time{
+    text-align: center;
+    font-size: 13px;
+}
+.she .avatar{
+    margin-right: 3px;
+}
+.she .avatar, .me .avatar{
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    vertical-align: top;
+}
+.she .message, .me .message{
+    /*background-color: #cccccc;*/
+    background-color: rgba(237,237,237);
+    padding: 5px 10px;
+    border-radius: 8px 0 8px 8px;
+    display: inline-block;
+    max-width: 300px;
+    white-space: normal;
+    word-break:break-all;
+}
+.she .message img.file, .me .message img.file{
+    max-width: 50px;
+}
+.she .message span.text, .me .message span.text{
+    text-align: center;
+    color: dodgerblue;
+    display: block;
+}
+.she .message{
+    border-radius: 8px 8px 8px 0;
+}
+/* 上传视频进度条 */
+.message.video .progress_bar{
+    position: relative;
+    background-color: #00aaee;
+    width: 100%;
+    height: 10px;
+    padding: 0;
+    margin: 0;
+    border-radius: 5px;
+}
+.message.video .progress_bar span{
+    position: absolute;
+    display: inline-block;
+    background-color: deeppink;
+    height: 10px;
+    width: 0%;
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+li.my_clear.on{
+    display: none;
+}
+/*
+    进度条
+*/
+#progress_screen.on{
+    display: none;
+}
+#progress_screen{
+    position: absolute;
+    background-color: rgba(219, 146, 248, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#Progress_bar_container{
+    position: absolute;
+    width: 60%;
+    top: 30%;
+    left: calc(50% - 35%);
+    background-color: rgba(10, 10, 10, 0.5);
+    padding: 20px 20px;
+    border-radius: 50px;
+    font-size: 18px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+/*关闭进度条展示*/
+#close_progress_bar{
+    position: absolute;
+    top: 70%;
+    left: calc(50% - 25px);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 48px;
+    /*padding: 0 5px;*/
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/*文本省略号*/
+.singe-line {
+    text-overflow: ellipsis; /* 当文本溢出时显示省略号 */
+    overflow: hidden; /* 隐藏超出容器的内容 */
+    white-space: nowrap; /* 禁止换行 */
+}
+
+/*自定义右键菜单*/
+.context-menu {
+  position: absolute;
+  display: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+}
+.context-menu li {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.context-menu li:hover {
+  background: #eee;
+}

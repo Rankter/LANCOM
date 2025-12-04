@@ -1,0 +1,6 @@
+Flask~=2.1.0
+pyinstaller~=6.3.0
+websockets~=9.1
+PyQt5~=5.15.10
+PySide2~=5.15.2.1
+Werkzeug~=2.2.2

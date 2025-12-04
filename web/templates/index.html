@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebCaht</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/public.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/index.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'font/icon/iconfont.css')}}">
+</head>
+<body>
+<div id="top">
+    <div class="shell">
+        <h1>WebChat
+            <span id="link_status" class=""></span>
+        </h1>
+    </div>
+</div>
+<div id="show_chat_model">
+    <ul class="main_UL">
+        {% for item in get_sion_list %}
+        <li class="my_clear">
+            <div class="{{ item.avatar }}">
+                <p class="c_time">{{ item.c_time }}</p>
+                <div class="msg_title on">
+                    {% if item.type == 'text' %}
+                        <div class="message text" data-menu="text">{{ item.text }}</div>
+                        <img class="avatar" src="{{ item['avatar_img'] }}" alt="我">
+                    {% elif item.type == 'image' %}
+                        <img src="{{ item.img_src }}" style="max-width: 300px;" alt="">
+                        <img class="avatar" src="{{ item['avatar_img'] }}" alt="我">
+                    {% elif item.type == 'file' %}
+                        <div class="message" data-menu="file">
+						    <a href="{{ item.file_path }}" class="flex_center" target="_blank">
+                                <img class="file" src="static/images/file/{{ item.file_type }}" alt="">
+                            </a>
+                            <span class="text singe-line">{{ item.file_name }}</span>
+					    </div>
+                        <img class="avatar" src="{{ item['avatar_img'] }}" alt="我">
+                    {% elif item.type == 'video' %}
+                        <div class="message video" data-menu="video">
+						    <video id="videoPlayer" width="300" height="160" controls>
+                               <source src="{{ item['file_path'] }}" type="video/mp4">
+                               您的浏览器不支持视频播放。
+                            </video>
+                            <span class="text singe-line">
+                                <a href="{{ item['file_path'] }}" download="{{ item.file_name }}">{{ item.file_name }}</a>
+                            </span>
+					    </div>
+                        <img class="avatar" src="{{ item['avatar_img'] }}" alt="我">
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div id="send_msg_model" class="my_clear">
+    <div class="shell">
+<!--        <i class="iconfont icon-guanbi_o"></i>-->
+<!--        <span class="iconfont icon-shangla"></span>-->
+        <div class="input">
+            <textarea name="msg_text" id="msg_text" style="width: 231px; height: 26px;"></textarea>
+        </div>
+        <div class="sct">
+            <span class="iconfont icon-sucai"></span>
+            <input id="file-upload" type="file" accept="*/*" name="picture" multiple="multiple" style="display: none"/>
+            <span class="iconfont icon-fasong"></span>
+        </div>
+    </div>
+</div>
+{#  进度条容器  #}
+<div id="progress_screen" class="on">
+    <div id="Progress_bar_container">文件上传成功-Max 13</div>
+    <span id="close_progress_bar" class="iconfont icon-guanbi_o"></span>
+</div>
+{# 自定义文本右键菜单栏  #}
+<ul id="text_menu" class="context-menu">
+   <li>删除</li>
+   <li>复制</li>
+</ul>
+{# 自定义图片、文件、视频右键菜单栏  #}
+<ul id="file-menu" class="context-menu">
+   <li>删除</li>
+   <li>下载</li>
+   <li>复制URL</li>
+</ul>
+<script src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/index.js') }}"></script>
+</body>
+</html>
