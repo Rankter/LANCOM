@@ -4,17 +4,28 @@ import os
 import socket
 import secrets
 import string
+import qrcode
 # import requests
 import webbrowser
 import multiprocessing
 # from pprint import pprint
 from ui_main import Ui_From
+from qrp import Ui_widget as Ui_SecondWindow
 # from PySide2.QtGui import QIcon, QPainter, QPixmap
 # from web.start_web import start_web
 # from PySide2.QtUiTools import QUiLoader
 from PyQt5.QtCore import pyqtSignal, QObject
 from web.websocket_server import start_websocket_func
-from PySide2.QtWidgets import QApplication, QMessageBox, QMainWindow, QWidget
+from PySide2.QtWidgets import QApplication, QMessageBox, QMainWindow, QWidget, QDialog
+
+
+"""第二个窗口类"""
+class SecondWindow(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        # 设置UI
+        self.ui = Ui_SecondWindow()
+        self.ui.setupUi(self)
 
 
 class Communicate(QObject):
@@ -38,13 +49,17 @@ class LANCOM(QWidget):
         # self.ipv4_ip = socket.gethostbyname_ex(socket.gethostname())[2][-1]
         self.ui.start_or_stop_btn.clicked.connect(self.start_or_stop_func)
         self.ui.update_btn.clicked.connect(self.check_server)
+        self.ui.QRBtn.clicked.connect(self.geneQt)
         self.com.show_log.connect(self.show_log_func)
         self.ui.clear_all_btn.clicked.connect(self.clear_all_func)
         self.ui.history_info.clicked.connect(self.show_history_info_func)
         self.ui.picture.clicked.connect(self.show_picture_func)
         self.ui.local_host.currentIndexChanged.connect(self.change_local_host_func)
         # 初始化内网IP地址
+        self.new_url = ''
         self.init_local_host_list()
+        # 存储子窗口引用
+        self.second_window = None
 
     def init_local_host_list(self):
         local_host_list = socket.gethostbyname_ex(socket.gethostname())[2]
@@ -119,7 +134,8 @@ class LANCOM(QWidget):
                 # print(randm_key)
                 self.com.show_log.emit(f'[+] websocket已开启...')
                 self.com.show_log.emit(f'[+] flask服务器已开启, pid={web_process.pid}')
-                self.com.show_log.emit(f'[+] Running on <font color=skyblue>http://{self.ipv4_ip}:5000/{randm_key}<font>')
+                self.new_url = f'http://{self.ipv4_ip}:5000/{randm_key}'
+                self.com.show_log.emit(f'[+] Running on <font color=skyblue>{self.new_url}<font>')
                 # 更新样式
                 self.ui.start_or_stop_btn.setText('Close')
                 self.ui.start_or_stop_btn.setStyleSheet('background-color: rgb(0, 255, 127);')
@@ -168,6 +184,19 @@ class LANCOM(QWidget):
         else:
             self.com.show_log.emit('[-] 没有websocket服务运行...')
         return {'flask_pid': flask_pid, 'websocket_pid': websocket_pid}
+
+    def geneQt(self):
+        print('生成二维码图片')
+        if self.new_url.strip() == '':
+            self.com.show_log.emit('[-] 还没有点击运行flask服务')
+        else:
+            img = qrcode.make(self.new_url)
+            img.save("web/static/images/QR/qr.png")
+            if self.second_window is None or not self.second_window.isVisible():
+                self.second_window = SecondWindow()
+                self.second_window.show()
+            else:
+                self.second_window.activateWindow()  # 如果已打开，则激活窗口
 
     def stop_server_func(self):
         self.ui.show_log.clear()
